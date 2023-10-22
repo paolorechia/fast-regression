@@ -6,10 +6,10 @@ from sklearn import linear_model
 from datetime import datetime
 
 
-ds = ray.data.read_parquet("to_predict.parquet")
+ds = ray.data.read_parquet("data/to_predict.parquet")
 class LinearRegressionPredictor:
     def __init__(self):
-        with open("linear.pkl", "rb") as fp:
+        with open("data/linear.pkl", "rb") as fp:
             str_= fp.read()
             self.model= linear_model.LinearRegression = pickle.loads(str_)
 
@@ -24,7 +24,7 @@ class LinearRegressionPredictor:
         return {"output": output}
         
 
-scale = ray.data.ActorPoolStrategy(size=4)
+scale = ray.data.ActorPoolStrategy(size=2)
 
 t0 = datetime.now()
 # Step 3: Map the Predictor over the Dataset to get predictions.

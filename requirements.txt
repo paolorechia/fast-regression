@@ -8,3 +8,4 @@ ray[data,train,tune,serve]
 wheel
 setuptools_scm
 ray[default]
+ray[client]

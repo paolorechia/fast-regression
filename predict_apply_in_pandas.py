@@ -8,7 +8,7 @@ import json
 
 from datetime import datetime
 # Loading trained model
-with open("intercept.json") as fp:
+with open("data/intercept.json") as fp:
     intercept = json.load(fp)["intercept"]
 
 print(intercept)
@@ -26,7 +26,7 @@ spark.sparkContext.setLogLevel("ERROR")
 
 
 to_predict: sql.DataFrame = spark.read.format("parquet").load(
-    "to_predict.parquet",
+    "data/to_predict.parquet",
     schema=T.StructType([
         T.StructField(
             name="X", dataType=T.ArrayType(T.DoubleType())
@@ -43,7 +43,7 @@ def unserialize_predict(df: pd.DataFrame) -> pd.DataFrame:
 
     result = []
     for row in df.itertuples():
-        with open("custom.bin", "rb") as fp:
+        with open("data/custom.bin", "rb") as fp:
             str_= fp.read()
 
         loaded = pickle.loads(str_)

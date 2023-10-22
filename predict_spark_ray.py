@@ -45,7 +45,7 @@ class LinearRegressionPredictor:
         return {"output": output}
         
 
-scale = ray.data.ActorPoolStrategy(size=4)
+scale = ray.data.ActorPoolStrategy(size=2)
 
 t0 = datetime.now()
 # Step 3: Map the Predictor over the Dataset to get predictions.
