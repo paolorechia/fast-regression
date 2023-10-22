@@ -1,3 +1,4 @@
+## Only works on Linux machine
 import ray
 
 from pyspark import sql
